@@ -8,6 +8,7 @@ pool:
 
 variables:
 - group: 'Terraform_Secrets'
+  TF_VERSION: '1.7.0'
 
 steps:
 - task: Checkout@1
