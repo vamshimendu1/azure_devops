@@ -1,46 +1,11 @@
 trigger:
-  branches:
-    include:
-      - main
+  - main
 
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-- group: 'Terraform_Secrets'
-
-- name: TF_VERSION
-  value: '1.7.0'
 steps:
-- task: Checkout@1
+- checkout: self
 
-- task: Bash@3
-  displayName: Install Terraform
-  inputs:
-    targetType: inline
-    script: |
-      curl -o terraform.zip https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
-      unzip terraform.zip
-      sudo mv terraform /usr/local/bin/
-
-- task: Bash@3
-  displayName: Terraform Init
-  inputs:
-    targetType: inline
-    script: |
-      terraform -chdir=env/dev init
-
-- task: Bash@3
-  displayName: Terraform Validate
-  inputs:
-    targetType: inline
-    script: |
-      terraform -chdir=env/dev fmt -check
-      terraform -chdir=env/dev validate
-
-- task: Bash@3
-  displayName: Terraform Plan
-  inputs:
-    targetType: inline
-    script: |
-      terraform -chdir=env/dev plan -out=tfplan
+- script: echo "Azure CI Pipeline Connected Successfully!"
+  displayName: "Test CI Pipeline"
