@@ -25,15 +25,19 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ env.TF_VERSION }}
-
+        
       - name: Terraform Init
-        run: terraform -chdir=env/dev init
+        run: terraform init
+        working-directory: infra/terraform/env/dev
 
       - name: Terraform Format Check
-        run: terraform -chdir=env/dev fmt -check
+        run: terraform fmt
+        working-directory: infra/terraform/env/dev
 
-      - name: Terraform Validate
-        run: terraform -chdir=env/dev validate
+      - name: Terraform Validation
+        run: terraform validate
+        working-directory: infra/terraform/env/dev
 
       - name: Terraform Plan
-        run: terraform -chdir=env/dev plan
+        run: terraform plan
+        working-directory: infra/terraform/env/dev
