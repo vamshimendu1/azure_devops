@@ -27,13 +27,13 @@ jobs:
           terraform_version: ${{ env.TF_VERSION }}
 
       - name: Terraform Init
-        run: terraform -chdir=AZURE_DEVOPS/env/dev init
+        run: terraform -chdir=TERRAFORM_INFRA_DEPLOY/env/dev init
 
       - name: Terraform Format Check
-        run: terraform -chdir=AZURE_DEVOPS/env/dev fmt -check
+        run: terraform -chdir=TERRAFORM_INFRA_DEPLOY/env/dev fmt -check
 
       - name: Terraform Validate
-        run: terraform -chdir=AZURE_DEVOPS/env/dev validate
+        run: terraform -chdir=TERRAFORM_INFRA_DEPLOY/env/dev validate
 
       - name: Terraform Plan
-        run: terraform -chdir=AZURE_DEVOPS/env/dev plan
+        run: terraform -chdir=TERRAFORM_INFRA_DEPLOY/env/dev plan
