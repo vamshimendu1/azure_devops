@@ -3,3 +3,4 @@ resource_group_name = "rg-dev"
 location            = "East US"
 sku                 = "Basic"
 admin_enabled       = false
+aks_name            = "vamshiaks001"
